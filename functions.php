@@ -3,7 +3,7 @@
 class Unit {
 
 	const API_URL = '//api-maps.yandex.ru/2.1/?lang=%locale&amp;apikey=%key';
-	const API_KEY = 'f6261166-859f-4517-bdff-05de60ee0630';
+	const API_KEY = '';
 
 	const FILTER_VALIDATE_FLOAT = [
 		'filter' => FILTER_VALIDATE_REGEXP,
