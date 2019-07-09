@@ -1,0 +1,1 @@
+ymaps.ready (() => new ymaps.Map ('map', {center: [ym.unit.longitude, ym.unit.latitude], zoom: 12}))
