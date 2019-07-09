@@ -2,68 +2,68 @@
 
 class Unit {
 
-    const API_URL = '//api-maps.yandex.ru/2.1/?lang=%locale&amp;apikey=%key';
-    const API_KEY = 'f6261166-859f-4517-bdff-05de60ee0630';
-    
-    const FILTER_VALIDATE_FLOAT = [
+	const API_URL = '//api-maps.yandex.ru/2.1/?lang=%locale&amp;apikey=%key';
+	const API_KEY = 'f6261166-859f-4517-bdff-05de60ee0630';
+
+	const FILTER_VALIDATE_FLOAT = [
 	    'filter' => FILTER_VALIDATE_REGEXP,
 	    'options' => ['regexp' => '/[+-]*\d+([\.,]\d+)*/']
-    ];
+	];
 
-    protected static $args = [
+	protected static $args = [
 
-	    'label' => 'Unit',
-	    'labels' => ['name' => 'Units', 'singular_name' => 'Unit', 'menu_name' => 'Unit', 'name_admin_bar' => 'Unit'],
+		'label' => 'Unit',
+		'labels' => ['name' => 'Units', 'singular_name' => 'Unit', 'menu_name' => 'Unit', 'name_admin_bar' => 'Unit'],
 
-	    'supports' => ['title', 'editor'],
+		'supports' => ['title', 'editor'],
 
-        'public' => TRUE,
-        'publicly_queryable' => TRUE,
-        'exclude_from_search' => FALSE,
+		'public' => TRUE,
+		'publicly_queryable' => TRUE,
+		'exclude_from_search' => FALSE,
 
-	    'hierarchical' => FALSE,
-        'can_export' => TRUE,
-        'has_archive' => FALSE,
+		'hierarchical' => FALSE,
+		'can_export' => TRUE,
+		'has_archive' => FALSE,
 
-	    'show_ui' => TRUE,
-	    'show_in_menu' => TRUE,
-        'show_in_admin_bar' => TRUE,
-        'show_in_nav_menus' => TRUE,
-        'show_in_rest' => FALSE,
+		'show_ui' => TRUE,
+		'show_in_menu' => TRUE,
+		'show_in_admin_bar' => TRUE,
+		'show_in_nav_menus' => TRUE,
+		'show_in_rest' => FALSE,
 
-	    'menu_position' => 1,
-	    'menu_icon' => 'dashicons-format-gallery',
+		'menu_position' => 1,
+		'menu_icon' => 'dashicons-format-gallery',
 
-	    'rewrite' => ['slug' => 'unit', 'with_front' => TRUE, 'pages' => FALSE, 'feeds' => FALSE],
+		'rewrite' => ['slug' => 'unit', 'with_front' => TRUE, 'pages' => FALSE, 'feeds' => FALSE],
 
-	    'capability_type' => 'post',
+		'capability_type' => 'post',
 
-        'register_meta_box_cb' => [__CLASS__, 'register_metabox']
-    ];
+		'register_meta_box_cb' => [__CLASS__, 'register_metabox']
+	];
 
-    public static function init (array $args = NULL) {
+	public static function init (array $args = NULL) {
 
-	    if ($args !== NULL)
+		if ($args !== NULL)
 
-		    static::$args = $args + static::$args;
+			static::$args = $args + static::$args;
 
-	    \add_action ('init', [__CLASS__, 'register_type']);
-	    \add_action ('save_post_unit', [__CLASS__, 'save_post']);
-	    \add_action ('wp_enqueue_scripts', [__CLASS__, 'register_scripts']);
+		\add_action ('init', [__CLASS__, 'register_type']);
+		\add_action ('save_post_unit', [__CLASS__, 'save_post']);
+		\add_action ('wp_enqueue_scripts', [__CLASS__, 'register_scripts']);
 
-	    \add_shortcode ('yandex_map', [__CLASS__, 'shortcode_yandex_map']);
-    }
+		\add_shortcode ('yandex_map', [__CLASS__, 'shortcode_yandex_map']);
+	}
 
-    public static function register_type () {
+	public static function register_type () {
 
-	    if (\is_wp_error ($error = \register_post_type ('unit', static::$args)))
+		if (\is_wp_error ($error = \register_post_type ('unit', static::$args)))
 
-	        throw new \Exception ($error->get_error_message (), $error->get_error_code ());
-    }
+			throw new \Exception ($error->get_error_message (), $error->get_error_code ());
+	}
 
-    public static function register_metabox (WP_Post $post) {
+	public static function register_metabox (WP_Post $post) {
 
-	    \add_meta_box ('lola', 'Coordinates', [__CLASS__, 'render_metabox'], 'unit', 'normal', 'high');
+		\add_meta_box ('lola', 'Coordinates', [__CLASS__, 'render_metabox'], 'unit', 'normal', 'high');
 	}
 
 	public static function render_metabox () {
@@ -72,8 +72,8 @@ class Unit {
 
 		if ($post !== NULL) : ?>
 
-        <input name="longitude" placeholder="Longitude" value="<?= $post->longitude; ?>">,&nbsp;
-        <input name="latitude" placeholder="Latitude" value="<?= $post->latitude; ?>">
+		<input name="longitude" placeholder="Longitude" value="<?= $post->longitude; ?>">,&nbsp;
+		<input name="latitude" placeholder="Latitude" value="<?= $post->latitude; ?>">
 
 		<?php endif;
 	}
@@ -108,7 +108,7 @@ class Unit {
 	        \wp_enqueue_script ('ym.app');
         }
 
-		\wp_enqueue_style ('ym.style', \get_template_directory_uri () . '/style.css' );
+	\wp_enqueue_style ('ym.style', \get_template_directory_uri () . '/style.css' );
     }
 
     public static function unit_with_meta () : WP_Post {
