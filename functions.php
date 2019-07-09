@@ -6,8 +6,8 @@ class Unit {
 	const API_KEY = 'f6261166-859f-4517-bdff-05de60ee0630';
 
 	const FILTER_VALIDATE_FLOAT = [
-	    'filter' => FILTER_VALIDATE_REGEXP,
-	    'options' => ['regexp' => '/[+-]*\d+([\.,]\d+)*/']
+		'filter' => FILTER_VALIDATE_REGEXP,
+		'options' => ['regexp' => '/[+-]*\d+([\.,]\d+)*/']
 	];
 
 	protected static $args = [
