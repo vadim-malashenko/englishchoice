@@ -89,6 +89,7 @@
 		
 		\wp_enqueue_style ('ym.style', \get_template_directory_uri () . '/style.css' );
 	}
+	
     	public static function unit_with_meta () : WP_Post
 	{
 		global $post;
@@ -103,9 +104,11 @@
 		
 		return NULL;
 	}
+	
 	public static function shortcode_yandex_map ()
 	{
 		?><div id="map"></div><?php
 	}
 }
+
 Unit::init ();
